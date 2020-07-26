@@ -25,12 +25,9 @@ jobs:
     - name: Build
       run: go build -ldflags -H=windowsgui -v -o Wakeup.exe .
 
-    - name: Zip files
-      working-directory: ./
-      run: zip Wakeup-${{ github.event.release.tag_name }}.zip Wakeup.exe
     - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: 'Wakeup-${{ github.event.release.tag_name }}.zip'
+        files: 'Wakeup.exe'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
