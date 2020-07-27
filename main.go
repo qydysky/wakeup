@@ -25,7 +25,7 @@ func main(){
 		return
 	}
 
-    if part.Sys().IsOpen(".lock.loop") {
+    if part.Checkfile().IsOpen(".lock.loop") {
 		file, _ = os.OpenFile("README.Use.txt",os.O_CREATE|os.O_WRONLY, 0666)
 		file.WriteAt([]byte("u must shutdown the exe and then remove .lock.loop file"), 0)
 		file.Close()
