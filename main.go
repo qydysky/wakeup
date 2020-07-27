@@ -5,6 +5,8 @@ import (
 	"flag"
 	"syscall"
 	"os/exec"
+
+	"github.com/qydysky/part"
 )
 
 var (
@@ -23,8 +25,7 @@ func main(){
 		return
 	}
 
-	_, err := os.Stat(".lock.loop")
-    if err == nil || os.IsExist(err) {
+    if part.Sys().IsOpen(".lock.loop") {
 		file, _ = os.OpenFile("README.Use.txt",os.O_CREATE|os.O_WRONLY, 0666)
 		file.WriteAt([]byte("u must shutdown the exe and then remove .lock.loop file"), 0)
 		file.Close()
